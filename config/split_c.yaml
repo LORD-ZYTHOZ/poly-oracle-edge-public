@@ -1,0 +1,18 @@
+# Split C — wide window + low edge (most aggressive)
+lookback_seconds: 60
+min_edge_bps: 100           # 1% edge
+min_liquidity_usd: 200
+
+max_risk_per_trade: 0.02
+max_open_exposure: 0.10
+daily_stop_loss: 0.05
+kelly_fraction: 0.25
+starting_bankroll: 1000.0
+
+order_type: limit
+retry_attempts: 3
+retry_delay_ms: 500
+market_poll_interval_s: 5
+mode: watch
+log_level: INFO
+log_dir: data/logs_c

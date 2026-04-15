@@ -1,0 +1,34 @@
+# ── Signal parameters ─────────────────────────────────────────────────────────
+lookback_seconds: 15        # How close to expiry we trade (seconds)
+min_edge_bps: 500           # Minimum mispricing in basis points (500 = 5%)
+min_liquidity_usd: 200      # Minimum market liquidity to trade (USDC)
+
+# ── Volatility model ──────────────────────────────────────────────────────────
+# Empirical 5-min BTC return sigma (annualised ~80% → per 5-min stdev ~0.28%)
+# Calibrate this from backtester output: python scripts/run_backtest.py
+sigma_5min: 0.0028
+
+# ── Risk parameters ───────────────────────────────────────────────────────────
+max_risk_per_trade: 0.02    # Max 2% of bankroll per trade
+max_open_exposure: 0.10     # Max 10% total simultaneous exposure
+daily_stop_loss: 0.05       # Halt if daily loss exceeds 5% of starting equity
+
+# ── Position sizing ───────────────────────────────────────────────────────────
+kelly_fraction: 0.25        # Fractional Kelly (0.25 = quarter Kelly — conservative)
+starting_bankroll: 1000.0   # USDC
+
+# ── Execution ─────────────────────────────────────────────────────────────────
+order_type: limit
+retry_attempts: 3
+retry_delay_ms: 500
+
+# ── Market polling ────────────────────────────────────────────────────────────
+market_poll_interval_s: 5   # How often to refresh the active market list
+
+# ── Mode ──────────────────────────────────────────────────────────────────────
+# Override with TRADING_MODE env var. watch → paper → live.
+mode: watch
+
+# ── Logging ───────────────────────────────────────────────────────────────────
+log_level: INFO
+log_dir: data/logs
